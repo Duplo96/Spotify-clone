@@ -1,0 +1,11 @@
+body{
+    background-color: rgb(23, 23, 23);
+}
+
+.left-container, .right-container {
+    background-color: black;
+}
+
+.dropdownList{
+    background-color: #292a2d;
+}
