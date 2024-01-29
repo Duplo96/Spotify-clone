@@ -9,3 +9,16 @@ body{
 .dropdownList{
     background-color: #292a2d;
 }
+
+.iconLibrary path{
+    fill: rgb(128, 128, 128);
+}
+
+.iconLibrary{
+    width: 1rem;
+}
+
+.list-tracks{
+    height: 800px;
+    overflow: auto;
+}
