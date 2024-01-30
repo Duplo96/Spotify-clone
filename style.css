@@ -22,3 +22,8 @@ body{
     height: 800px;
     overflow: auto;
 }
+
+.picture{
+    aspect-ratio: 1/1;
+    width: 50px;
+}
