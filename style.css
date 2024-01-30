@@ -1,29 +1,30 @@
-body{
-    background-color: rgb(23, 23, 23);
+body {
+  background-color: rgb(23, 23, 23);
 }
 
-.left-container, .right-container {
-    background-color: black;
+.left-container,
+.right-container {
+  background-color: black;
 }
 
-.dropdownList{
-    background-color: #292a2d;
+.dropdownList {
+  background-color: #292a2d;
 }
 
-.iconLibrary path{
-    fill: rgb(128, 128, 128);
+.iconLibrary path {
+  fill: rgb(128, 128, 128);
 }
 
-.iconLibrary{
-    width: 1rem;
+.iconLibrary {
+  width: 1rem;
 }
 
-.list-tracks{
-    height: 800px;
-    overflow: auto;
+.list-tracks {
+  height: 800px;
+  overflow: auto;
 }
 
-.picture{
-    aspect-ratio: 1/1;
-    width: 70px;
+.picture {
+  aspect-ratio: 1/1;
+  width: 70px;
 }

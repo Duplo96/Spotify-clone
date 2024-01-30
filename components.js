@@ -118,7 +118,7 @@ export function createLeftContainer() {
 createLeftContainer()
 
 export function createRightContainer() {
-   let elements = `
+    let elements = `
    <div class="mt-3 mb-5 d-flex justify-content-between">
           <h5 class="text-white mt-1">Attività amici</h5>
           <div class="icons d-flex gap-2 me-2 fs-5">
@@ -135,7 +135,7 @@ export function createRightContainer() {
 
     const ulListFriends = document.querySelector(".firends-list")
     ulListFriends.innerHTML = ""
-    for (let i=0; i=20; i++) {
+    for (let i = 0; i = 20; i++) {
         const liFriend = `
         <div class="friend-card container-fluid">
             <div class="card mb-3 bg-black text-white-50">
@@ -167,7 +167,7 @@ export function createRightContainer() {
             </div>
           </div>`;
 
-          ulListFriends.innerHTML += liFriend
+        ulListFriends.innerHTML += liFriend
     }
 }
 
