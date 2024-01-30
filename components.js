@@ -118,3 +118,95 @@ export function createLeftContainer() {
 }
 // qui avvio la funzione che crea gli elementi nel left container
 createLeftContainer();
+<<<<<<< HEAD
+=======
+
+export const createHero = ({ picture }) => {
+  const divCard = document.createElement("div");
+  const divRow = document.createElement("div");
+  const divImgCol = document.createElement("div");
+  const img = document.createElement("img");
+  const divCardBody = document.createElement("div");
+  const cardTitle = document.createElement("h5");
+  const cardText1 = document.createElement("p");
+  const cardText2 = document.createElement("p");
+  const smallText = document.createElement("small");
+
+  divCard.classList.add("card", "mb-3");
+  divRow.classList.add("row", "g-0");
+  divImgCol.classList.add("col-md-4");
+  img.classList.add("img-fluid", "rounded-start");
+  img.src = `${picture}`;
+  img.setAttribute("alt", "...");
+  divCardBody.classList.add("col-md-8", "card-body");
+  cardTitle.classList.add("card-title");
+  cardTitle.textContent = "Card title";
+  cardText1.classList.add("card-text");
+  cardText1.textContent =
+    "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.";
+  cardText2.classList.add("card-text");
+  smallText.classList.add("text-body-secondary");
+  smallText.textContent = "Last updated 3 mins ago";
+
+  divCard.appendChild(divRow);
+  divRow.appendChild(divImgCol);
+  divRow.appendChild(divCardBody);
+  divImgCol.appendChild(img);
+  divCardBody.appendChild(cardTitle);
+  divCardBody.appendChild(cardText1);
+  divCardBody.appendChild(cardText2);
+  cardText2.appendChild(smallText);
+
+  return divCard;
+};
+export function createRightContainer() {
+  let elements = `
+           <div class="mt-3 mb-5 d-flex justify-content-between">
+                  <h5 class="text-white mt-1">Attività amici</h5>
+                  <div class="icons d-flex gap-2 me-2 fs-5">
+                    <i class="bi bi-person-plus"></i>
+                    <i class="bi bi-x-lg"></i>
+                  </div>
+                </div>
+
+                <div class="friends-list"></div>`;
+
+  const rightContainer = document.querySelector(".right-container");
+  rightContainer.innerHTML = "";
+  rightContainer.innerHTML = elements;
+
+  const ulListFriends = document.querySelector(".friends-list");
+  ulListFriends.innerHTML = "";
+  for (let i = 0; i < 10; i++) {
+    const liFriend = `<div class="friend-card container-fluid">
+        <div class="card mb-3 bg-black text-white-50" >
+            <div class="row g-0">
+                <div class="img-fluid col-md-3">
+                    <img
+                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.ou-8P-0uoxOYsZeul6wpigHaE8%26pid%3DApi&f=1&ipt=9399a6c6bf063bfee346eb5202c15a74d2eb835cc6ef20e9840242b1a5c4fe4e&ipo=images"
+                        class="img-fluid rounded-circle picture"
+                        alt="picture"
+                    />
+                </div>
+
+                <div class="text-container col-md-9">
+                    <div class="title d-flex justify-content-between">
+                        <h6 class="card-title">Kwadwo Asamoha</h6>
+                        <p class="m-0">4 ore</p>
+                    </div>
+
+                    <p class="card-text m-0">Album ● Artist</p>
+
+                    <div class="track d-flex gap-2">
+                        <i class="bi bi-music-note-beamed"></i>
+                        <p class="m-0">Track</p>
+                    </div>
+                </div>
+            </div>
+        </div >
+    </div>`;
+
+    ulListFriends.innerHTML += liFriend;
+  }
+}
+>>>>>>> feature/fix2
