@@ -117,7 +117,7 @@ export function createLeftContainer() {
 // qui avvio la funzione che crea gli elementi nel left container
 createLeftContainer()
 
-export function createRightContainer() {
+// export function createRightContainer() {
     //     let elements = `
     //    <div class="mt-3 mb-5 d-flex justify-content-between">
     //           <h5 class="text-white mt-1">Attività amici</h5>
