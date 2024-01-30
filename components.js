@@ -118,8 +118,6 @@ export function createLeftContainer() {
 }
 // qui avvio la funzione che crea gli elementi nel left container
 createLeftContainer();
-<<<<<<< HEAD
-=======
 
 export const createHero = ({ picture }) => {
   const divCard = document.createElement("div");
@@ -209,4 +207,3 @@ export function createRightContainer() {
     ulListFriends.innerHTML += liFriend;
   }
 }
->>>>>>> feature/fix2
