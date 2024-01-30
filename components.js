@@ -157,3 +157,53 @@ export const createHero = ({ picture }) => {
 
   return divCard;
 };
+export function createRightContainer() {
+  let elements = `
+           <div class="mt-3 mb-5 d-flex justify-content-between">
+                  <h5 class="text-white mt-1">Attività amici</h5>
+                  <div class="icons d-flex gap-2 me-2 fs-5">
+                    <i class="bi bi-person-plus"></i>
+                    <i class="bi bi-x-lg"></i>
+                  </div>
+                </div>
+
+                <div class="friends-list"></div>`;
+
+  const rightContainer = document.querySelector(".right-container");
+  rightContainer.innerHTML = "";
+  rightContainer.innerHTML = elements;
+
+  const ulListFriends = document.querySelector(".friends-list");
+  ulListFriends.innerHTML = "";
+  for (let i = 0; i < 10; i++) {
+    const liFriend = `<div class="friend-card container-fluid">
+        <div class="card mb-3 bg-black text-white-50" >
+            <div class="row g-0">
+                <div class="img-fluid col-md-3">
+                    <img
+                        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.ou-8P-0uoxOYsZeul6wpigHaE8%26pid%3DApi&f=1&ipt=9399a6c6bf063bfee346eb5202c15a74d2eb835cc6ef20e9840242b1a5c4fe4e&ipo=images"
+                        class="img-fluid rounded-circle picture"
+                        alt="picture"
+                    />
+                </div>
+
+                <div class="text-container col-md-9">
+                    <div class="title d-flex justify-content-between">
+                        <h6 class="card-title">Kwadwo Asamoha</h6>
+                        <p class="m-0">4 ore</p>
+                    </div>
+
+                    <p class="card-text m-0">Album ● Artist</p>
+
+                    <div class="track d-flex gap-2">
+                        <i class="bi bi-music-note-beamed"></i>
+                        <p class="m-0">Track</p>
+                    </div>
+                </div>
+            </div>
+        </div >
+    </div>`;
+
+    ulListFriends.innerHTML += liFriend;
+  }
+}
