@@ -21,13 +21,160 @@
       <div class="left-container col-3"></div>
 
       <main class="container-fluid col-7">
-        <div class="carossel-section"></div>
-        <div class="container-album"></div>
-        <div class="container-artist"></div>
+        <div class="carossel-section">
+          <div class="d-flex justify-content-between mt-3">
+            <div class="buttons d-flex gap-3">
+              <button
+                class="carousel-prev rounded-circle text-white-50"
+                type="button"
+                data-bs-target="#carouselExample"
+                data-bs-slide="prev"
+              >
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <button
+                class="carousel-next rounded-circle text-white-50"
+                type="button"
+                data-bs-target="#carouselExample"
+                data-bs-slide="next"
+              >
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+
+            <div class="profile-dropdown">
+              <div class="dropdown">
+                <button
+                  class="btn-profile-dropdown rounded-pill"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <div class="d-flex gap-2">
+                    <img
+                      class="img-fluid rounded-circle img-dropdown"
+                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.ou-8P-0uoxOYsZeul6wpigHaE8%26pid%3DApi&f=1&ipt=9399a6c6bf063bfee346eb5202c15a74d2eb835cc6ef20e9840242b1a5c4fe4e&ipo=images"
+                      alt="pic"
+                    />
+                    <div class="name">Kwadwo Asamoha</div>
+                    <i class="bi bi-caret-down-fill"></i>
+                  </div>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="card bg-black">
+                  <div
+                    class="card mb-3 bg-black text-white"
+                    style="max-width: 540px"
+                  >
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img
+                          src="..."
+                          class="img-fluid rounded-start"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Card 1</h5>
+                          <p class="card-text">
+                            This is a wider card with supporting text below as a
+                            natural lead-in to additional content. This content
+                            is a little bit longer.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card bg-black">
+                  <div
+                    class="card mb-3 bg-black text-white"
+                    style="max-width: 540px"
+                  >
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img
+                          src="..."
+                          class="img-fluid rounded-start"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Card 1</h5>
+                          <p class="card-text">
+                            This is a wider card with supporting text below as a
+                            natural lead-in to additional content. This content
+                            is a little bit longer.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card bg-black">
+                  <div
+                    class="card mb-3 bg-black text-white"
+                    style="max-width: 540px"
+                  >
+                    <div class="row g-0">
+                      <div class="col-md-4">
+                        <img
+                          src="..."
+                          class="img-fluid rounded-start"
+                          alt="..."
+                        />
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title">Card 1</h5>
+                          <p class="card-text">
+                            This is a wider card with supporting text below as a
+                            natural lead-in to additional content. This content
+                            is a little bit longer.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-album text-white mt-3">
+          <h3>Buonasera</h3>
+          <div class="albumsContainer row row-cols-3"></div>
+        </div>
+
+        <div class="container-track text-white my-4">
+          <h5>Altro di ciò che ti piace</h5>
+          <div
+            class="tracksContainer row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5"
+          ></div>
+        </div>
       </main>
 
-      <div class="right-container col-2 tex-white-50">
-      </div>
+      <div class="right-container col-2 tex-white-50"></div>
     </div>
 
     <script
@@ -35,6 +182,6 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./album.js"></script>
+    <script type="module" src="./index.js"></script>
   </body>
 </html>

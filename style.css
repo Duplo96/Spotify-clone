@@ -1,29 +1,72 @@
-body{
-    background-color: rgb(23, 23, 23);
+body {
+  background-color: rgb(23, 23, 23);
 }
 
-.left-container, .right-container {
-    background-color: black;
+.left-container,
+.right-container {
+  background-color: black;
 }
 
-.dropdownList{
-    background-color: #292a2d;
+.dropdownList {
+  background-color: #292a2d;
 }
 
-.iconLibrary path{
-    fill: rgb(128, 128, 128);
+.iconLibrary path {
+  fill: rgb(128, 128, 128);
 }
 
-.iconLibrary{
-    width: 1rem;
+.iconLibrary {
+  width: 1rem;
 }
 
-.list-tracks{
-    height: 800px;
-    overflow: auto;
+.list-tracks {
+  height: 800px;
+  overflow: auto;
 }
 
-.picture{
-    aspect-ratio: 1/1;
-    width: 50px;
+.picture {
+  aspect-ratio: 1/1;
+  width: 50px;
+}
+
+.carousel-prev,
+.carousel-next {
+  background-color: rgb(0, 0, 0, 0.6);
+  border: 0px;
+}
+
+.img-dropdown {
+  aspect-ratio: 1/1;
+  width: 20px;
+}
+
+.btn-profile-dropdown {
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  padding: 3px;
+  padding-right: 10px;
+  border: 0px;
+}
+
+.albumsContainer *.card {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.albumsContainer *.card:hover {
+  cursor: pointer;
+  background-color: #3b3b3b;
+}
+
+.tracksContainer *.card {
+  background-color: #090909;
+  color: white;
+  height: 280px;
+  max-width: 200px;
+}
+
+.tracksContainer *.card:hover {
+  cursor: pointer;
+  background-color: #2c2c2c;
 }

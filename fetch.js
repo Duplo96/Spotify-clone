@@ -1,4 +1,4 @@
-export const fetchRequest = async ({ url, method, id = "", query = "" }) => {
+export const fetchRequest = async ({ url, method, query = "", id = "" }) => {
   try {
     const requestOptions = {
       method: method,
@@ -7,7 +7,7 @@ export const fetchRequest = async ({ url, method, id = "", query = "" }) => {
     const resp = await fetch(url + query + id, requestOptions);
     const json = await resp.json();
     // console.log(json);
-    return json;
+    return json.data;
   } catch (error) {
     alert(`error: ${error}`);
   }

@@ -3,8 +3,8 @@ In sostanza questa funzione crea gli elementi nel left-container.
 Questa funzione va importata e richiamata nei singoli file .js, in modo che quando si effettua una modifica,
 quest'ultima viene applicata automaticamente in ogni singola pagina*/
 export function createLeftContainer() {
-  // salvo il codice html dentro la variabile "elements"
-  let elements = `
+    // salvo il codice html dentro la variabile "elements"
+    let elements = `
         <div class="ms-3">
             <div class="dropdown">
                 <button
@@ -98,67 +98,64 @@ export function createLeftContainer() {
             </div>
         </div>`;
 
-  // seleziono il left container, lo svuoto e inserisco elements con innerHtml
-  const leftContainer = document.querySelector(".left-container");
-  leftContainer.innerHTML = "";
-  leftContainer.innerHTML = elements;
+    // seleziono il left container, lo svuoto e inserisco elements con innerHtml
+    const leftContainer = document.querySelector(".left-container");
+    leftContainer.innerHTML = "";
+    leftContainer.innerHTML = elements;
 
-  /*questa parte l'ho creata per testare il div che contiene la lista di tutte le tracce (o album)
-    - Ho semplicemente creato un loop che inserisce 30 "li" in "ul"
-    - Ovviamente va modificata prendendo l'array di tracce/album e inserirli in lista
-    - Per creare lo scroll ho dato un altezza in css al div ".list-tracks" */
-  const ulListTracks = document.querySelector(".list-tracks > ul");
-  ulListTracks.innerHTML = "";
-  for (let i = 0; i < 100; i++) {
-    const li = `<li class="list-group-item border-0 bg-black text-white-50 ">Track ${
-      i + 1
-    }</li>`;
-    ulListTracks.innerHTML += li;
-  }
+    /*questa parte l'ho creata per testare il div che contiene la lista di tutte le tracce (o album)
+      - Ho semplicemente creato un loop che inserisce 30 "li" in "ul"
+      - Ovviamente va modificata prendendo l'array di tracce/album e inserirli in lista
+      - Per creare lo scroll ho dato un altezza in css al div ".list-tracks" */
+    const ulListTracks = document.querySelector(".list-tracks > ul");
+    ulListTracks.innerHTML = "";
+    for (let i = 0; i < 100; i++) {
+        const li = `<li class="list-group-item border-0 bg-black text-white-50 ">Track ${i + 1
+            }</li>`;
+        ulListTracks.innerHTML += li;
+    }
 }
-// qui avvio la funzione che crea gli elementi nel left container
-createLeftContainer();
 
 export const createHero = ({ picture }) => {
-  const divCard = document.createElement("div");
-  const divRow = document.createElement("div");
-  const divImgCol = document.createElement("div");
-  const img = document.createElement("img");
-  const divCardBody = document.createElement("div");
-  const cardTitle = document.createElement("h5");
-  const cardText1 = document.createElement("p");
-  const cardText2 = document.createElement("p");
-  const smallText = document.createElement("small");
+    const divCard = document.createElement("div");
+    const divRow = document.createElement("div");
+    const divImgCol = document.createElement("div");
+    const img = document.createElement("img");
+    const divCardBody = document.createElement("div");
+    const cardTitle = document.createElement("h5");
+    const cardText1 = document.createElement("p");
+    const cardText2 = document.createElement("p");
+    const smallText = document.createElement("small");
 
-  divCard.classList.add("card", "mb-3");
-  divRow.classList.add("row", "g-0");
-  divImgCol.classList.add("col-md-4");
-  img.classList.add("img-fluid", "rounded-start");
-  img.src = `${picture}`;
-  img.setAttribute("alt", "...");
-  divCardBody.classList.add("col-md-8", "card-body");
-  cardTitle.classList.add("card-title");
-  cardTitle.textContent = "Card title";
-  cardText1.classList.add("card-text");
-  cardText1.textContent =
-    "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.";
-  cardText2.classList.add("card-text");
-  smallText.classList.add("text-body-secondary");
-  smallText.textContent = "Last updated 3 mins ago";
+    divCard.classList.add("card", "mb-3");
+    divRow.classList.add("row", "g-0");
+    divImgCol.classList.add("col-md-4");
+    img.classList.add("img-fluid", "rounded-start");
+    img.src = `${picture}`;
+    img.setAttribute("alt", "...");
+    divCardBody.classList.add("col-md-8", "card-body");
+    cardTitle.classList.add("card-title");
+    cardTitle.textContent = "Card title";
+    cardText1.classList.add("card-text");
+    cardText1.textContent =
+        "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.";
+    cardText2.classList.add("card-text");
+    smallText.classList.add("text-body-secondary");
+    smallText.textContent = "Last updated 3 mins ago";
 
-  divCard.appendChild(divRow);
-  divRow.appendChild(divImgCol);
-  divRow.appendChild(divCardBody);
-  divImgCol.appendChild(img);
-  divCardBody.appendChild(cardTitle);
-  divCardBody.appendChild(cardText1);
-  divCardBody.appendChild(cardText2);
-  cardText2.appendChild(smallText);
+    divCard.appendChild(divRow);
+    divRow.appendChild(divImgCol);
+    divRow.appendChild(divCardBody);
+    divImgCol.appendChild(img);
+    divCardBody.appendChild(cardTitle);
+    divCardBody.appendChild(cardText1);
+    divCardBody.appendChild(cardText2);
+    cardText2.appendChild(smallText);
 
-  return divCard;
+    return divCard;
 };
 export function createRightContainer() {
-  let elements = `
+    let elements = `
            <div class="mt-3 mb-5 d-flex justify-content-between">
                   <h5 class="text-white mt-1">Attività amici</h5>
                   <div class="icons d-flex gap-2 me-2 fs-5">
@@ -169,14 +166,14 @@ export function createRightContainer() {
 
                 <div class="friends-list"></div>`;
 
-  const rightContainer = document.querySelector(".right-container");
-  rightContainer.innerHTML = "";
-  rightContainer.innerHTML = elements;
+    const rightContainer = document.querySelector(".right-container");
+    rightContainer.innerHTML = "";
+    rightContainer.innerHTML = elements;
 
-  const ulListFriends = document.querySelector(".friends-list");
-  ulListFriends.innerHTML = "";
-  for (let i = 0; i < 10; i++) {
-    const liFriend = `<div class="friend-card container-fluid">
+    const ulListFriends = document.querySelector(".friends-list");
+    ulListFriends.innerHTML = "";
+    for (let i = 0; i < 10; i++) {
+        const liFriend = `<div class="friend-card container-fluid">
         <div class="card mb-3 bg-black text-white-50" >
             <div class="row g-0">
                 <div class="img-fluid col-md-3">
@@ -204,6 +201,6 @@ export function createRightContainer() {
         </div >
     </div>`;
 
-    ulListFriends.innerHTML += liFriend;
-  }
+        ulListFriends.innerHTML += liFriend;
+    }
 }
