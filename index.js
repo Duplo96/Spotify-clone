@@ -10,7 +10,7 @@ async function init() {
 }
 
 // creo un array di queries
-let artistQueries = [
+export let artistQueries = [
   "the%20beatles",
   "queen",
   "michael%20jackson",
@@ -54,8 +54,8 @@ async function createAlbumCards() {
     let tracks = await fetchRequest(fetchParam);
     // randomizzo le varie fetch
     let shuffleData = tracks.data.sort(() => Math.random() - 0.5)
-    // creo un index random tra 0 e 5
-    let shuffleIndex = Math.floor((Math.random() * 5))
+    // creo un index random tra 0 e 25
+    let shuffleIndex = Math.floor((Math.random() * 25))
     // salvo un album e il suo artista randomizzando l'index
     let album = shuffleData[shuffleIndex].album
     let artist = shuffleData[shuffleIndex].artist
