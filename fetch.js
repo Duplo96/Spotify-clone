@@ -9,6 +9,6 @@ export const fetchRequest = async ({ url, method, query = "", id = "" }) => {
     // console.log(json);
     return json;
   } catch (error) {
-    alert(`error: ${error}`);
+    console.log(error);
   }
 };
