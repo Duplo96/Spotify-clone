@@ -117,7 +117,7 @@ export function createLeftContainer() {
   }
 }
 
-export const createHero = ({ cover }) => {
+export const createHero = ({ cover_xl, type, title, artist, release_date }) => {
   const divCard = document.createElement("div");
   const divRow = document.createElement("div");
   const divImgCol = document.createElement("div");
@@ -131,18 +131,17 @@ export const createHero = ({ cover }) => {
   divCard.classList.add("card", "mb-3");
   divRow.classList.add("row", "g-0");
   divImgCol.classList.add("col-md-4");
-  img.classList.add("img-fluid", "rounded-start");
-  img.src = `${cover}`;
+  img.classList.add("img-fluid", "rounded-start", "w-100");
+  img.src = `${cover_xl}`;
   img.setAttribute("alt", "...");
   divCardBody.classList.add("col-md-8", "card-body");
-  cardTitle.classList.add("card-title");
-  cardTitle.textContent = "Card title";
+  cardTitle.classList.add("card-title", "text-uppercase");
+  cardTitle.textContent = `${type}`;
   cardText1.classList.add("card-text");
-  cardText1.textContent =
-    "This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.";
+  cardText1.textContent = `${title}`;
   cardText2.classList.add("card-text");
   smallText.classList.add("text-body-secondary");
-  smallText.textContent = "Last updated 3 mins ago";
+  smallText.textContent = ` ${artist.name}`;
 
   divCard.appendChild(divRow);
   divRow.appendChild(divImgCol);
@@ -205,3 +204,22 @@ export function createRightContainer() {
     ulListFriends.innerHTML += liFriend;
   }
 }
+export const formatList = (track) => {
+  const card = document.createElement("li");
+  const divTitle = document.createElement("div");
+  const divRank = document.createElement("div");
+  const divTimer = document.createElement("div");
+
+  card.classList.add("row");
+
+  divTitle.classList.add("col-7", "text-capitalized");
+  divRank.classList.add("col-4");
+  divTimer.classList.add("col-1");
+  divTitle.textContent = `${track.title}`;
+  divRank.textContent = `${track.rank}`;
+  divTimer.textContent = `${track.duration}`;
+  card.appendChild(divTitle);
+  card.appendChild(divRank);
+  card.appendChild(divTimer);
+  return card;
+};
