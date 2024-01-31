@@ -6,8 +6,9 @@ async function init() {
   createLeftContainer();
   createRightContainer();
   createAlbumCards();
-  createTrackCards();
+  createArtistCards();
 }
+
 
 async function createAlbumCards() {
   const fetchParam = {
@@ -20,13 +21,17 @@ async function createAlbumCards() {
   tracks.data.forEach((track) => {
     albums.push(track.album);
   });
+
+  // eseguo lo shuffle
+  let shuffleAlbums = albums.sort(() => Math.random() - 0.5);
+
   // seleziono solo 6 album (fare ancora lo shuffle)
-  const selectedAlbums = albums.slice(0, 6);
+  const selectedAlbums = shuffleAlbums.slice(0, 6);
 
   const albumsContainer = document.querySelector(".albumsContainer");
   albumsContainer.innerHTML = "";
   selectedAlbums.forEach((album) => {
-    let albumCard =`
+    let albumCard = `
       <div class="albumCard-container mb-2">
         <a href="./album.html?id=${album.id}" class="text-decoration-none">
           <div id="${album.id}" class="card" >
@@ -48,25 +53,66 @@ async function createAlbumCards() {
   });
 }
 
-async function createTrackCards() {
-  const fetchParam = {
-    url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
-    method: "GET",
-    query: "queen",
-  };
-  let tracks = await fetchRequest(fetchParam);
-  let selectedTracks = tracks.data.slice(0, 10);
-  const trackContainer = document.querySelector(".tracksContainer");
-  trackContainer.innerHTML = "";
-  selectedTracks.forEach((track) => {
-    trackContainer.innerHTML += `
-        <div id="${track.id}" class="trackCard-container mb-3 col">
-              <div class="card p-2">
-                <img src="${track.artist.picture}" class="card-img-top align-self-center" alt="cover">
-                <div class="card-body p-2">
-                  <h6 class="card-title">${track.title}</h6>
-                </div>
-              </div>
-            </div>`;
-  });
+async function createArtistCards() {
+  // creo un array di queries
+  let artistQueries = [
+    "queen",
+    "the%20beatles",
+    "michael%20jackson",
+    "elton%20john",
+    "madonna",
+    "led%20zeppelin",
+    "adele",
+    "u2",
+    "bruce%20springsteen",
+    "acdc",
+    "ed%20sheeran",
+    "beyonce",
+    "rolling%20stones",
+    "nirvana",
+    "frank%20sinatra",
+    "the%20weeknd",
+    "david%20bowie",
+    "prince",
+    "jovanotti",
+    "ariana%20grande",
+  ]
+
+  // faccio lo shuffle delle queries e ne seleziono 10
+  let shuffleQueries = artistQueries.sort(() => Math.random() - 0.5);
+  let selectedQueries = shuffleQueries.slice(0, 10)
+
+  // seleziono e svuoto il div
+  const artistsContainer = document.querySelector(".artistsContainer");
+  artistsContainer.innerHTML = "";
+
+  // per ogni query eseguo la fetch e creo le cards
+  selectedQueries.forEach(async (query) => {
+
+    // creo il parametro per la fetch
+    let fetchParam = {
+      url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
+      method: "GET",
+      query: query,
+    };
+
+    let artistArray = await fetchRequest(fetchParam)
+    let artistName = artistArray.data[0].artist.name
+    let artistId = artistArray.data[0].artist.id
+    let artistImg = artistArray.data[0].artist.picture
+    let albumId = artistArray.data[0].album.id
+    // console.log(albumId)
+
+    artistsContainer.innerHTML += `
+    <a href="./artist.html?id=${artistId}" class="text-decoration-none">
+      <div id="${albumId}" class="trackCard-container mb-3 col">
+        <div class="card p-2">
+          <img src="${artistImg}" class="card-img-top align-self-center" alt="cover">
+            <div class="card-body p-2">
+              <h6 class="card-title titoli fw-bold">${artistName}</h6>
+            </div>
+        </div>
+      </div>
+    </a>`;
+  })
 }
