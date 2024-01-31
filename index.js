@@ -53,12 +53,12 @@ async function createAlbumCards() {
     // salvo le fetch nella variabile tracks
     let tracks = await fetchRequest(fetchParam);
     // randomizzo le varie fetch
-    let shuffleData = tracks.data.sort(() => Math.random() - 0.5)
+    let shuffleData = tracks.data.sort(() => Math.random() - 0.5);
     // creo un index random tra 0 e 25
-    let shuffleIndex = Math.floor((Math.random() * 25))
+    let shuffleIndex = Math.floor(Math.random() * 25);
     // salvo un album e il suo artista randomizzando l'index
-    let album = shuffleData[shuffleIndex].album
-    let artist = shuffleData[shuffleIndex].artist
+    let album = shuffleData[shuffleIndex].album;
+    let artist = shuffleData[shuffleIndex].artist;
 
     // creo le card degli album
     let albumCard = `
@@ -81,8 +81,8 @@ async function createAlbumCards() {
       </div>`;
 
     albumsContainer.innerHTML += albumCard;
-  })
-};
+  });
+}
 
 async function createArtistCards() {
   // faccio lo shuffle delle queries e ne seleziono 10
@@ -122,3 +122,94 @@ async function createArtistCards() {
     </a>`;
   });
 }
+const carouselContainer = document.querySelector("#carouselExample");
+
+async function createCarousel() {
+  carouselContainer.innerHTML = `<div class="carousel-inner">
+<div class="carousel-item active">
+  <div class="card bg-black">
+    <div
+      class="card mb-3 bg-black text-white"
+      style="max-width: 540px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src=""
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a
+              natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="carousel-item">
+  <div class="card bg-black">
+    <div
+      class="card mb-3 bg-black text-white"
+      style="max-width: 540px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="..."
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card 1</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a
+              natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="carousel-item">
+  <div class="card bg-black">
+    <div
+      class="card mb-3 bg-black text-white"
+      style="max-width: 540px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="..."
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card 1</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a
+              natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>`;
+}
+createCarousel();
