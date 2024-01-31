@@ -55,10 +55,11 @@ async function createAlbumCards() {
 async function createArtistCards() {
   // creo un array di queries
   let artistQueries = [
-    "queen",
     "the%20beatles",
+    "queen",
     "michael%20jackson",
     "elton%20john",
+    "sfera%20ebbasta",
     "madonna",
     "led%20zeppelin",
     "adele",
@@ -69,11 +70,10 @@ async function createArtistCards() {
     "beyonce",
     "rolling%20stones",
     "nirvana",
-    "frank%20sinatra",
-    "the%20weeknd",
+    "nino%20d%27angelo",
+    "jovanotti",
     "david%20bowie",
     "prince",
-    "jovanotti",
     "ariana%20grande",
   ];
 
@@ -95,10 +95,10 @@ async function createArtistCards() {
     };
 
     let artistArray = await fetchRequest(fetchParam);
-    let artistName = artistArray.data[0].artist.name;
-    let artistId = artistArray.data[0].artist.id;
-    let artistImg = artistArray.data[0].artist.picture;
-    let albumId = artistArray.data[0].album.id;
+    let artistName = artistArray.data[1].artist.name;
+    let artistId = artistArray.data[1].artist.id;
+    let artistImg = artistArray.data[1].artist.picture;
+    let albumId = artistArray.data[1].album.id;
     // console.log(albumId)
 
     artistsContainer.innerHTML += `
