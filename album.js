@@ -3,11 +3,10 @@ import { fetchRequest } from "./fetch.js";
 const heroSection = document.querySelector(".container-hero ");
 const buttonSection = document.querySelector(".container-button");
 const tracklistSection = document.querySelector(".container-tracklist ");
-const URL = `https:/striveschool-api.herokuapp.com/api/deezer/search?q=`;
-const URLTRACKLIST =
-  "https://striveschool-api.herokuapp.com/api/deezer/album/212377";
-const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/artist/119`;
-// fetchRequest();
+const URL = `https://striveschool-api.herokuapp.com/api/deezer/search?q=`;
+const URLTRACKLIST = `https://striveschool-api.herokuapp.com/api/deezer/album/`;
+const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/212377`;
+
 // const formatHTMLCard = (artist) => {
 //   const card = document.createElement("div");
 //   card.classList.add("card", "col-lg-2", "bg-dark");
@@ -41,32 +40,31 @@ const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/artist/119`;
 
 // }
 createLeftContainer();
-const ul = document.createElement("ul");
-const li = document.createElement("li");
-ul.appendChild(li);
-tracklistSection.appendChild(ul);
 
 const params = new URLSearchParams(window.location.search);
-const id = params.get("get");
+const id = params.get("id");
+console.log(id);
 
 const fetchAlbum = async () => {
   const json = await fetchRequest({
-    url: URLALBUM,
+    url: URLTRACKLIST,
+    id: id,
     method: "GET",
   });
   console.log(json);
   return json;
 };
 const albumInfo = await fetchAlbum();
-const { picture, type, name } = albumInfo;
-console.log(picture, type, name);
+
+const { cover } = albumInfo;
+console.log(cover);
 heroSection.appendChild(createHero(albumInfo));
 
-const fetchTrack = async () => {
-  const json = await fetchRequest({
-    url: URLTRACKLIST,
-    method: "GET",
+const displayTracklist = () => {
+  const { tracks } = albumInfo;
+  console.log(tracks);
+  tracks.data.map((track) => {
+    console.log(track);
   });
-  console.log(json);
-  return json;
 };
+displayTracklist();
