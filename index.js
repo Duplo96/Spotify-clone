@@ -26,21 +26,23 @@ async function createAlbumCards() {
   const albumsContainer = document.querySelector(".albumsContainer");
   albumsContainer.innerHTML = "";
   selectedAlbums.forEach((album) => {
-    let albumCard = `
-            <div class="albumCard-container mb-2">
-                <div id="${album.id}" class="card" >
-                    <div class="row g-0 align-items-center">
-                        <div class="col-md-4">
-                            <img src="${album.cover}" class="rounded-start" alt="cover" style="width: 80px"/>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body p-0">
-                            <a href="./album.html?id=${album.id}">${album.title}</a>
-                            </div>
-                        </div>
-                    </div>
+    let albumCard =`
+      <div class="albumCard-container mb-2">
+        <a href="./album.html?id=${album.id}" class="text-decoration-none">
+          <div id="${album.id}" class="card" >
+            <div class="row g-0 align-items-center">
+              <div class="col-md-4">
+                <img src="${album.cover}" class="rounded-start" alt="cover" style="width: 80px" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-0">
+                  <div>${album.title}</div>
                 </div>
-            </div>`;
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>`;
 
     albumsContainer.innerHTML += albumCard;
   });
