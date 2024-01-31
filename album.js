@@ -7,7 +7,7 @@ import {
 import { fetchRequest } from "./fetch.js";
 const heroSection = document.querySelector(".container-hero ");
 const tracklistSection = document.querySelector("#tracklist");
-const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/`;
+export const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/`;
 // const formatHTMLCard = (artist) => {
 //   const card = document.createElement("div");
 //   card.classList.add("card", "col-lg-2", "bg-dark");
@@ -46,7 +46,7 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 console.log(id);
 
-const fetchAlbum = async () => {
+export const fetchAlbum = async () => {
   const json = await fetchRequest({
     url: URLALBUM,
     id: id,
@@ -55,7 +55,7 @@ const fetchAlbum = async () => {
   console.log(json);
   return json;
 };
-const albumInfo = await fetchAlbum();
+export const albumInfo = await fetchAlbum();
 
 const { cover } = albumInfo;
 console.log(cover);

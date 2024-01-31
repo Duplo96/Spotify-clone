@@ -1,3 +1,6 @@
+import { artistQueries } from "./index.js";
+import { fetchRequest } from "./fetch.js";
+
 /*Questa funzione è stata creata per non dover copiare e incollare lo stesso codice in 3 pagine diverse.
 In sostanza questa funzione crea gli elementi nel left-container.
 Questa funzione va importata e richiamata nei singoli file .js, in modo che quando si effettua una modifica,
@@ -52,9 +55,9 @@ export function createLeftContainer() {
 
             <div class="list-links border-bottom border-secondary">
                 <ul class="mb-5">
-                    <li class="d-flex text-white-50 gap-2 mb-2 ">
+                    <li class="d-flex text-white-50 gap-2 mb-2">
                         <i class="bi bi-house-door-fill "></i>
-                        <a href="./index.html" class" link-underline link-underline-opacity-0">Home</a>
+                        <a href="./index.html" class"link-underline link-underline-opacity-0 text-decoration-none">Home</a>
                     </li>
                     <li class="d-flex text-white-50 gap-2 mb-2">
                         <i class="bi bi-search"></i>
@@ -104,17 +107,38 @@ export function createLeftContainer() {
   leftContainer.innerHTML = elements;
 
   /*questa parte l'ho creata per testare il div che contiene la lista di tutte le tracce (o album)
-      - Ho semplicemente creato un loop che inserisce 30 "li" in "ul"
-      - Ovviamente va modificata prendendo l'array di tracce/album e inserirli in lista
-      - Per creare lo scroll ho dato un altezza in css al div ".list-tracks" */
+        - Ho semplicemente creato un loop che inserisce 30 "li" in "ul"
+        - Ovviamente va modificata prendendo l'array di tracce/album e inserirli in lista
+        - Per creare lo scroll ho dato un altezza in css al div ".list-tracks" */
   const ulListTracks = document.querySelector(".list-tracks > ul");
   ulListTracks.innerHTML = "";
-  for (let i = 0; i < 100; i++) {
-    const li = `<li class="list-group-item border-0 bg-black text-white-50 ">Track ${
-      i + 1
-    }</li>`;
-    ulListTracks.innerHTML += li;
-  }
+
+  // faccio lo shuffle delle queries
+  let shuffleQueries = artistQueries.sort(() => Math.random() - 0.5);
+  // per ogni query faccio una fetch
+  shuffleQueries.forEach(async (query) => {
+    const fetchParam = {
+      url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
+      method: "GET",
+      query: query,
+    };
+
+    // salvo le fetch nella variabile tracks
+    let tracks = await fetchRequest(fetchParam);
+    // randomizzo le varie fetch
+    let shuffleTracks = tracks.data.sort(() => Math.random() - 0.5);
+    // seleziono le prime 5 Tracks dall'album già randomizzato
+    let selectTracks = shuffleTracks.slice(0, 5);
+
+    // faccio un loop delle 5 tracks selezionate in precedenza e creo gli elementi per la lista
+    // ATTENZIONE: ci saranno 5 tracks per ogni query(artista)
+    selectTracks.forEach((track) => {
+      const li = `<li class="list-group-item border-0 bg-black text-white-50 ">
+            <a href="./album.html?id=${track.album.id}">${track.artist.name} ${track.title}</a>
+            </li>`;
+      ulListTracks.innerHTML += li;
+    });
+  });
 }
 
 export const createHero = ({

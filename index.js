@@ -9,27 +9,58 @@ async function init() {
   await createArtistCards();
 }
 
+// creo un array di queries
+export let artistQueries = [
+  "the%20beatles",
+  "queen",
+  "michael%20jackson",
+  "elton%20john",
+  "sfera%20ebbasta",
+  "madonna",
+  "led%20zeppelin",
+  "adele",
+  "u2",
+  "bruce%20springsteen",
+  "acdc",
+  "ed%20sheeran",
+  "beyonce",
+  "rolling%20stones",
+  "nirvana",
+  "nino%20d%27angelo",
+  "jovanotti",
+  "david%20bowie",
+  "prince",
+  "ariana%20grande",
+];
+
 async function createAlbumCards() {
-  const fetchParam = {
-    url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
-    method: "GET",
-    query: "queen",
-  };
-  let tracks = await fetchRequest(fetchParam);
-  let albums = [];
-  tracks.data.forEach((track) => {
-    albums.push(track.album);
-  });
+  // faccio lo shuffle delle queries e ne seleziono 6
+  let shuffleQueries = artistQueries.sort(() => Math.random() - 0.5);
+  let selectedQueries = shuffleQueries.slice(0, 6);
 
-  // eseguo lo shuffle
-  let shuffleAlbums = albums.sort(() => Math.random() - 0.5);
-
-  // seleziono solo 6 album (fare ancora lo shuffle)
-  const selectedAlbums = shuffleAlbums.slice(0, 6);
-
+  // seleziono e svuoto il div
   const albumsContainer = document.querySelector(".albumsContainer");
   albumsContainer.innerHTML = "";
-  selectedAlbums.forEach((album) => {
+
+  // per ogni query faccio una fetch
+  selectedQueries.forEach(async (query) => {
+    const fetchParam = {
+      url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
+      method: "GET",
+      query: query,
+    };
+
+    // salvo le fetch nella variabile tracks
+    let tracks = await fetchRequest(fetchParam);
+    // randomizzo le varie fetch
+    let shuffleData = tracks.data.sort(() => Math.random() - 0.5);
+    // creo un index random tra 0 e 25
+    let shuffleIndex = Math.floor(Math.random() * 25);
+    // salvo un album e il suo artista randomizzando l'index
+    let album = shuffleData[shuffleIndex].album;
+    let artist = shuffleData[shuffleIndex].artist;
+
+    // creo le card degli album
     let albumCard = `
       <div class="albumCard-container mb-2">
         <a href="./album.html?id=${album.id}" class="text-decoration-none">
@@ -41,6 +72,7 @@ async function createAlbumCards() {
               <div class="col-md-8">
                 <div class="card-body p-0">
                   <div>${album.title}</div>
+                  <div class="text-white-50">${artist.name}</div>
                 </div>
               </div>
             </div>
@@ -53,30 +85,6 @@ async function createAlbumCards() {
 }
 
 async function createArtistCards() {
-  // creo un array di queries
-  let artistQueries = [
-    "the%20beatles",
-    "queen",
-    "michael%20jackson",
-    "elton%20john",
-    "sfera%20ebbasta",
-    "madonna",
-    "led%20zeppelin",
-    "adele",
-    "u2",
-    "bruce%20springsteen",
-    "acdc",
-    "ed%20sheeran",
-    "beyonce",
-    "rolling%20stones",
-    "nirvana",
-    "nino%20d%27angelo",
-    "jovanotti",
-    "david%20bowie",
-    "prince",
-    "ariana%20grande",
-  ];
-
   // faccio lo shuffle delle queries e ne seleziono 10
   let shuffleQueries = artistQueries.sort(() => Math.random() - 0.5);
   let selectedQueries = shuffleQueries.slice(0, 10);
@@ -114,3 +122,94 @@ async function createArtistCards() {
     </a>`;
   });
 }
+const carouselContainer = document.querySelector("#carouselExample");
+
+async function createCarousel() {
+  carouselContainer.innerHTML = `<div class="carousel-inner">
+<div class="carousel-item active">
+  <div class="card bg-black">
+    <div
+      class="card mb-3 bg-black text-white"
+      style="max-width: 540px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src=""
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a
+              natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="carousel-item">
+  <div class="card bg-black">
+    <div
+      class="card mb-3 bg-black text-white"
+      style="max-width: 540px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="..."
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card 1</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a
+              natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="carousel-item">
+  <div class="card bg-black">
+    <div
+      class="card mb-3 bg-black text-white"
+      style="max-width: 540px"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="..."
+            class="img-fluid rounded-start"
+            alt="..."
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Card 1</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a
+              natural lead-in to additional content. This content
+              is a little bit longer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>`;
+}
+createCarousel();
