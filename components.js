@@ -157,8 +157,12 @@ export const createHero = ({
   imgSmall.classList.add("rounded-circle");
   spanArtist.textContent = `${artist.name}`;
   spanDate.textContent = release_date;
-  spanTotalTrack.textContent = nb_tracks;
-  spanDuration.textContent = duration;
+  spanTotalTrack.textContent = `${nb_tracks} Brani`;
+  duration = duration;
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  const formattedDuration = `${minutes} min ${seconds} sec`;
+  spanDuration.textContent = `${formattedDuration}`;
 
   divCard.appendChild(divRow);
   divRow.appendChild(divImgCol);
@@ -171,6 +175,7 @@ export const createHero = ({
   cardDescription.appendChild(spanArtist);
   cardDescription.appendChild(spanDate);
   cardDescription.appendChild(spanTotalTrack);
+  cardDescription.appendChild(spanDuration);
 
   return divCard;
 };
@@ -235,8 +240,15 @@ export const formatList = (track, index) => {
   divRank.classList.add("col-4");
   divTimer.classList.add("col-1");
   divTitle.textContent = `${index} ${track.title}`;
-  divRank.textContent = `${track.rank}`;
-  divTimer.textContent = `${track.duration}`;
+  const number = track.rank;
+  const streaming = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  divRank.textContent = `${streaming}`;
+  const time = track.duration;
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  const formattedSeconds = seconds < 10 ? "0" + seconds : seconds;
+  const duration = minutes + ":" + formattedSeconds;
+  divTimer.textContent = `${duration}`;
   list.appendChild(divTitle);
   list.appendChild(divRank);
   list.appendChild(divTimer);
