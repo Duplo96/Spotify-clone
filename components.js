@@ -52,9 +52,9 @@ export function createLeftContainer() {
 
             <div class="list-links border-bottom border-secondary">
                 <ul class="mb-5">
-                    <li class="d-flex text-white-50 gap-2 mb-2">
-                        <i class="bi bi-house-door-fill"></i>
-                        <p class="m-0">Home</p>
+                    <li class="d-flex text-white-50 gap-2 mb-2 ">
+                        <i class="bi bi-house-door-fill "></i>
+                        <a href="./index.html" class" link-underline link-underline-opacity-0">Home</a>
                     </li>
                     <li class="d-flex text-white-50 gap-2 mb-2">
                         <i class="bi bi-search"></i>
@@ -117,16 +117,29 @@ export function createLeftContainer() {
   }
 }
 
-export const createHero = ({ cover_xl, type, title, artist, release_date }) => {
+export const createHero = ({
+  cover_xl,
+  type,
+  title,
+  artist,
+  release_date,
+  picture,
+  duration,
+  nb_tracks,
+}) => {
   const divCard = document.createElement("div");
   const divRow = document.createElement("div");
   const divImgCol = document.createElement("div");
   const img = document.createElement("img");
   const divCardBody = document.createElement("div");
   const cardTitle = document.createElement("h5");
-  const cardText1 = document.createElement("p");
-  const cardText2 = document.createElement("p");
-  const smallText = document.createElement("small");
+  const cardsubTitle = document.createElement("p");
+  const cardDescription = document.createElement("div");
+  const imgSmall = document.createElement("img");
+  const spanArtist = document.createElement("span");
+  const spanDate = document.createElement("span");
+  const spanTotalTrack = document.createElement("span");
+  const spanDuration = document.createElement("span");
 
   divCard.classList.add("card", "mb-3");
   divRow.classList.add("row", "g-0");
@@ -137,20 +150,27 @@ export const createHero = ({ cover_xl, type, title, artist, release_date }) => {
   divCardBody.classList.add("col-md-8", "card-body");
   cardTitle.classList.add("card-title", "text-uppercase");
   cardTitle.textContent = `${type}`;
-  cardText1.classList.add("card-text");
-  cardText1.textContent = `${title}`;
-  cardText2.classList.add("card-text");
-  smallText.classList.add("text-body-secondary");
-  smallText.textContent = ` ${artist.name}`;
+  cardsubTitle.classList.add("card-text");
+  cardsubTitle.textContent = `${title}`;
+  cardDescription.classList.add("card-text", "d-flex", "align-items-center");
+  imgSmall.src = `${artist.picture}`;
+  imgSmall.classList.add("rounded-circle");
+  spanArtist.textContent = `${artist.name}`;
+  spanDate.textContent = release_date;
+  spanTotalTrack.textContent = nb_tracks;
+  spanDuration.textContent = duration;
 
   divCard.appendChild(divRow);
   divRow.appendChild(divImgCol);
   divRow.appendChild(divCardBody);
   divImgCol.appendChild(img);
   divCardBody.appendChild(cardTitle);
-  divCardBody.appendChild(cardText1);
-  divCardBody.appendChild(cardText2);
-  cardText2.appendChild(smallText);
+  divCardBody.appendChild(cardsubTitle);
+  divCardBody.appendChild(cardDescription);
+  cardDescription.appendChild(imgSmall);
+  cardDescription.appendChild(spanArtist);
+  cardDescription.appendChild(spanDate);
+  cardDescription.appendChild(spanTotalTrack);
 
   return divCard;
 };
@@ -204,22 +224,21 @@ export function createRightContainer() {
     ulListFriends.innerHTML += liFriend;
   }
 }
-export const formatList = (track) => {
-  const card = document.createElement("li");
+export const formatList = (track, index) => {
+  const list = document.createElement("li");
   const divTitle = document.createElement("div");
   const divRank = document.createElement("div");
   const divTimer = document.createElement("div");
 
-  card.classList.add("row");
-
+  list.classList.add("row");
   divTitle.classList.add("col-7", "text-capitalized");
   divRank.classList.add("col-4");
   divTimer.classList.add("col-1");
-  divTitle.textContent = `${track.title}`;
+  divTitle.textContent = `${index} ${track.title}`;
   divRank.textContent = `${track.rank}`;
   divTimer.textContent = `${track.duration}`;
-  card.appendChild(divTitle);
-  card.appendChild(divRank);
-  card.appendChild(divTimer);
-  return card;
+  list.appendChild(divTitle);
+  list.appendChild(divRank);
+  list.appendChild(divTimer);
+  return list;
 };

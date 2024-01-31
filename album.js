@@ -1,12 +1,13 @@
-import { createLeftContainer, createHero, formatList } from "./components.js";
+import {
+  createLeftContainer,
+  createHero,
+  formatList,
+  createRightContainer,
+} from "./components.js";
 import { fetchRequest } from "./fetch.js";
 const heroSection = document.querySelector(".container-hero ");
-const buttonSection = document.querySelector(".container-button");
 const tracklistSection = document.querySelector("#tracklist");
-const URL = `https://striveschool-api.herokuapp.com/api/deezer/search?q=`;
-const URLTRACKLIST = `https://striveschool-api.herokuapp.com/api/deezer/album/`;
-const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/212377`;
-
+const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/`;
 // const formatHTMLCard = (artist) => {
 //   const card = document.createElement("div");
 //   card.classList.add("card", "col-lg-2", "bg-dark");
@@ -40,14 +41,14 @@ const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/212377
 
 // }
 createLeftContainer();
-
+createRightContainer();
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 console.log(id);
 
 const fetchAlbum = async () => {
   const json = await fetchRequest({
-    url: URLTRACKLIST,
+    url: URLALBUM,
     id: id,
     method: "GET",
   });
@@ -63,9 +64,11 @@ heroSection.appendChild(createHero(albumInfo));
 const displayTracklist = () => {
   const { tracks } = albumInfo;
   console.log(tracks);
-  tracks.data.map((track) => {
+  let index = 1;
+  tracks.data.forEach((track) => {
     console.log(track);
-    tracklistSection.appendChild(formatList(track));
+    tracklistSection.appendChild(formatList(track, index));
+    index++;
   });
 };
 displayTracklist();
