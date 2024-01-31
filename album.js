@@ -1,8 +1,8 @@
-import { createLeftContainer, createHero } from "./components.js";
+import { createLeftContainer, createHero, formatList } from "./components.js";
 import { fetchRequest } from "./fetch.js";
 const heroSection = document.querySelector(".container-hero ");
 const buttonSection = document.querySelector(".container-button");
-const tracklistSection = document.querySelector(".container-tracklist ");
+const tracklistSection = document.querySelector("#tracklist");
 const URL = `https://striveschool-api.herokuapp.com/api/deezer/search?q=`;
 const URLTRACKLIST = `https://striveschool-api.herokuapp.com/api/deezer/album/`;
 const URLALBUM = `https://striveschool-api.herokuapp.com/api/deezer/album/212377`;
@@ -65,6 +65,7 @@ const displayTracklist = () => {
   console.log(tracks);
   tracks.data.map((track) => {
     console.log(track);
+    tracklistSection.appendChild(formatList(track));
   });
 };
 displayTracklist();
