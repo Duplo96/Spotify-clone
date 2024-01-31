@@ -35,7 +35,9 @@ async function createAlbumCards() {
                         </div>
                         <div class="col-md-8">
                             <div class="card-body p-0">
-                            <a href="./album.html?id=${album.id}">${album.title}</a>
+                            
+                             <a class="titoli fw-bold" href="./album.html?id=${album.id}">${album.title}</a>
+                            
                             </div>
                         </div>
                     </div>
@@ -62,7 +64,9 @@ async function createTrackCards() {
               <div class="card p-2">
                 <img src="${track.artist.picture}" class="card-img-top align-self-center" alt="cover">
                 <div class="card-body p-2">
-                  <h6 class="card-title">${track.title}</h6>
+                 
+                    <h6 class="card-title titoli fw-bold">${track.title}</h6>
+                 
                 </div>
               </div>
             </div>`;
