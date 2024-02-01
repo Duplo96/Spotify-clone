@@ -71,7 +71,7 @@ async function createAlbumCards() {
               </div>
               <div class="col-md-8">
                 <div class="card-body p-0">
-                  <div>${album.title}</div>
+                  <div class=" fw-bold">${album.title}</div>
                   <div class="text-white-50">${artist.name}</div>
                 </div>
               </div>
@@ -115,7 +115,7 @@ async function createArtistCards() {
         <div class="card p-2">
           <img src="${artistImg}" class="card-img-top align-self-center" alt="cover">
             <div class="card-body p-2">
-              <h6 class="card-title titoli fw-bold">${artistName}</h6>
+              <h6 class="card-title titoli  fw-bold">${artistName}</h6>
             </div>
         </div>
       </div>
@@ -142,7 +142,9 @@ async function createCarousel() {
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title"></h5>
+            <h1 class="card-title">
+            artista casuale??????
+            </h1>
             <p class="card-text">
               This is a wider card with supporting text below as a
               natural lead-in to additional content. This content

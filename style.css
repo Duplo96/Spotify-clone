@@ -2,6 +2,14 @@ body {
   background-color: rgb(23, 23, 23);
 }
 
+a{
+  text-decoration: none;
+}
+
+.grigetto{
+  color:rgb(179, 179, 179);
+}
+
 .left-container,
 .right-container {
   background-color: black;

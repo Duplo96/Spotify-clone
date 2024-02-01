@@ -56,8 +56,8 @@ export function createLeftContainer() {
             <div class="list-links border-bottom border-secondary">
                 <ul class="mb-5">
                     <li class="d-flex text-white-50 gap-2 mb-2">
-                        <i class="bi bi-house-door-fill "></i>
-                        <a href="./index.html" class"link-underline link-underline-opacity-0 text-decoration-none">Home</a>
+                        <i class="bi bi-house-door-fill grigetto"></i>
+                        <a href="./index.html" class"link-underline link-underline-opacity-0 text-decoration-none grigetto ">Home</a>
                     </li>
                     <li class="d-flex text-white-50 gap-2 mb-2">
                         <i class="bi bi-search"></i>
@@ -134,7 +134,7 @@ export function createLeftContainer() {
     // ATTENZIONE: ci saranno 5 tracks per ogni query(artista)
     selectTracks.forEach((track) => {
       const li = `<li class="list-group-item border-0 bg-black text-white-50 ">
-            <a href="./album.html?id=${track.album.id}">${track.artist.name} ${track.title}</a>
+            <a class="grigetto" href="./album.html?id=${track.album.id}">${track.artist.name} ${track.title}</a>
             </li>`;
       ulListTracks.innerHTML += li;
     });
