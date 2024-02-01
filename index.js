@@ -3,10 +3,10 @@ import { fetchRequest } from "./fetch.js";
 
 window.addEventListener("DOMContentLoaded", init);
 async function init() {
-  createLeftContainer();
   createRightContainer();
   createAlbumCards();
-  await createArtistCards();
+  createArtistCards();
+  createLeftContainer();
 }
 
 // creo un array di queries
@@ -43,7 +43,7 @@ async function createAlbumCards() {
   albumsContainer.innerHTML = "";
 
   // per ogni query faccio una fetch
-  selectedQueries.forEach(async (query) => {
+  const albumPromises = selectedQueries.map(async (query) => {
     const fetchParam = {
       url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
       method: "GET",
@@ -61,7 +61,8 @@ async function createAlbumCards() {
     let artist = shuffleData[shuffleIndex].artist;
 
     // creo le card degli album
-    let albumCard = `
+    // let albumCard = 
+    return `
       <div class="albumCard-container mb-2">
         <a href="./album.html?id=${album.id}" class="text-decoration-none">
           <div id="${album.id}" class="card" >
@@ -80,8 +81,13 @@ async function createAlbumCards() {
         </a>
       </div>`;
 
-    albumsContainer.innerHTML += albumCard;
+    // albumsContainer.innerHTML += albumCard;
   });
+  // Eseguo tutte le promesse usando Promise.all
+  const albumCards = await Promise.all(albumPromises);
+
+  // Aggiungi le carte al container dopo che tutte le promesse sono risolte
+  albumsContainer.innerHTML = albumCards.join("");
 }
 
 async function createArtistCards() {
@@ -94,7 +100,7 @@ async function createArtistCards() {
   artistsContainer.innerHTML = "";
 
   // per ogni query eseguo la fetch e creo le cards
-  selectedQueries.forEach(async (query) => {
+  const artistPromises = selectedQueries.map(async (query) => {
     // creo il parametro per la fetch
     let fetchParam = {
       url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
@@ -103,13 +109,15 @@ async function createArtistCards() {
     };
 
     let artistArray = await fetchRequest(fetchParam);
-    let artistName = artistArray.data[1].artist.name;
-    let artistId = artistArray.data[1].artist.id;
-    let artistImg = artistArray.data[1].artist.picture;
-    let albumId = artistArray.data[1].album.id;
-    // console.log(albumId)
+    // creo un index random tra 0 e 25
+    let shuffleIndex = Math.floor(Math.random() * 25);
+    let artistName = artistArray.data[shuffleIndex].artist.name;
+    let artistId = artistArray.data[shuffleIndex].artist.id;
+    let artistImg = artistArray.data[shuffleIndex].artist.picture;
+    let albumId = artistArray.data[shuffleIndex].album.id;
 
-    artistsContainer.innerHTML += `
+    // artistsContainer.innerHTML += 
+    return `
     <a href="./artist.html?id=${artistId}" class="text-decoration-none">
       <div id="${albumId}" class="trackCard-container mb-3 col">
         <div class="card p-2">
@@ -121,97 +129,71 @@ async function createArtistCards() {
       </div>
     </a>`;
   });
+  const artistCards = await Promise.all(artistPromises)
+  artistsContainer.innerHTML = artistCards.join("")
 }
-const carouselContainer = document.querySelector("#carouselExample");
+
 
 async function createCarousel() {
-  carouselContainer.innerHTML = `<div class="carousel-inner">
-<div class="carousel-item active">
-  <div class="card bg-black">
-    <div
-      class="card mb-3 bg-black text-white"
-      style="max-width: 540px"
-    >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            src=""
-            class="img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h1 class="card-title">
-            artista casuale??????
-            </h1>
-            <p class="card-text">
-              This is a wider card with supporting text below as a
-              natural lead-in to additional content. This content
-              is a little bit longer.
-            </p>
+  // faccio lo shuffle delle queries e ne seleziono 3
+  let shuffleQueries = artistQueries.sort(() => Math.random() - 0.5);
+  let selectedQueries = shuffleQueries.slice(0, 3);
+
+  // svuoto il div
+  const carouselContainer = document.querySelector(".carousel-inner");
+  carouselContainer.innerHTML = ""
+
+  // per ogni query eseguo la fetch e creo le cards
+  const artistPromises = selectedQueries.map(async (query) => {
+    // creo il parametro per la fetch
+    let fetchParam = {
+      url: "https://striveschool-api.herokuapp.com/api/deezer/search?q=",
+      method: "GET",
+      query: query,
+    };
+
+    let artistArray = await fetchRequest(fetchParam);
+    // creo un index random tra 0 e 25
+    let shuffleIndex = Math.floor(Math.random() * 25);
+    let artistName = artistArray.data[shuffleIndex].artist.name;
+    // let artistId = artistArray.data[shuffleIndex].artist.id;
+    let artistImg = artistArray.data[shuffleIndex].artist.picture;
+    // let albumId = artistArray.data[shuffleIndex].album;
+    // console.log(artistArray.data[shuffleIndex])
+
+    return `<div class="carousel-item">
+      <div class="card bg-black">
+        <div
+          class="card mb-3 bg-black text-white"
+          style="max-width: 540px"
+        >
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="${artistImg}"
+                class="img-fluid rounded-start"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h1 class="card-title">
+                  ${artistName}
+                </h1>
+                <p class="card-text">
+                  Qui non so che mettere
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div class="carousel-item">
-  <div class="card bg-black">
-    <div
-      class="card mb-3 bg-black text-white"
-      style="max-width: 540px"
-    >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            src="..."
-            class="img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card 1</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a
-              natural lead-in to additional content. This content
-              is a little bit longer.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="carousel-item">
-  <div class="card bg-black">
-    <div
-      class="card mb-3 bg-black text-white"
-      style="max-width: 540px"
-    >
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            src="..."
-            class="img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title">Card 1</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a
-              natural lead-in to additional content. This content
-              is a little bit longer.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>`;
+    </div>`;
+  })
+  const artistItems = await Promise.all(artistPromises)
+  carouselContainer.innerHTML = artistItems.join("")
+
+  const firstCarosellItem = document.querySelector(".carousel-item")
+  firstCarosellItem.classList.add("active")
 }
 createCarousel();
